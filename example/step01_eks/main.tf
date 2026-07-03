@@ -125,42 +125,42 @@ provider "kubernetes" {
 }
 
 
-resource "kubernetes_deployment_v1" "nginx" {
-  metadata {
-    name = "nginx-hello"
-    labels = { app = "nginx" }
-  }
-  spec {
-    replicas = 2
-    selector { match_labels = { app = "nginx" } }
-    template {
-      metadata { labels = { app = "nginx" } }
-      spec {
-        container {
-          image = "nginx:latest"
-          name  = "nginx"
-          port { container_port = 80 }
-        }
-      }
-    }
-  }
-}
+# resource "kubernetes_deployment_v1" "nginx" {
+#   metadata {
+#     name = "nginx-hello"
+#     labels = { app = "nginx" }
+#   }
+#   spec {
+#     replicas = 2
+#     selector { match_labels = { app = "nginx" } }
+#     template {
+#       metadata { labels = { app = "nginx" } }
+#       spec {
+#         container {
+#           image = "nginx:latest"
+#           name  = "nginx"
+#           port { container_port = 80 }
+#         }
+#       }
+#     }
+#   }
+# }
 
 
-resource "kubernetes_service_v1" "nginx_svc" {
-  metadata { name = "nginx-service" }
-  spec {
-    selector = { app = "nginx" }
-    port {
-      port        = 80
-      target_port = 80
-    }
-    # 자동으로 LoadBalancer 가 프로비저닝 되어서 외부에서 이 서비스에 접속이 가능하게 된다.
-    type = "LoadBalancer"
-  }
-}
+# resource "kubernetes_service_v1" "nginx_svc" {
+#   metadata { name = "nginx-service" }
+#   spec {
+#     selector = { app = "nginx" }
+#     port {
+#       port        = 80
+#       target_port = 80
+#     }
+#     # 자동으로 LoadBalancer 가 프로비저닝 되어서 외부에서 이 서비스에 접속이 가능하게 된다.
+#     type = "LoadBalancer"
+#   }
+# }
 
-# LoadBalancer 의 url 출력
-output "lb_url" {
-  value = kubernetes_service_v1.nginx_svc.status.0.load_balancer.0.ingress.0.hostname
-}
+# # LoadBalancer 의 url 출력
+# output "lb_url" {
+#   value = kubernetes_service_v1.nginx_svc.status.0.load_balancer.0.ingress.0.hostname
+# }

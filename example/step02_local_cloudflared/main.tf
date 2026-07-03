@@ -129,6 +129,10 @@ resource "null_resource" "install_cloudflared_pod" {
 
 }
 
-
-
+# 터널 토큰을 얻어내기 위한 블럭
+output "tunnel_real_token" {
+  description = "Cloudflare Tunnel Token"
+  value       = cloudflare_tunnel.vmware_tunnel.tunnel_token
+  sensitive   = true  
+}
 
