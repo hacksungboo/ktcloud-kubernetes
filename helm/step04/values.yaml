@@ -1,0 +1,6 @@
+
+subdomains:
+  - "www"
+  - "mail"
+  - "argocd"
+  

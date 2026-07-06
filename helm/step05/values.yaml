@@ -1,0 +1,5 @@
+
+servicePorts:
+  market: "8000"
+  ports: "8000"
+  index: "80"
