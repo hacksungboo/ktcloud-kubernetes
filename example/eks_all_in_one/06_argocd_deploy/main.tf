@@ -195,7 +195,7 @@ resource "argocd_application" "image-app" {
       
       # 2. Chart.yaml이 들어있는 폴더 경로 지정
       path            = "efs_test_serivce" 
-      
+      #path            = "efs_test_serivce_cloudfront" 
       # 3. 폴더가 Helm 구조라면 helm 블록을 통해 값을 제어할 수 있습니다!
       # helm {
       #   # Git 폴더 안에 있는 특정 values 파일을 덮어쓰고 싶을 때
